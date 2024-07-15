@@ -1,6 +1,6 @@
-# Auth.js (NextAuth) v5 Next.js Authentication
+# Authjs v5 Project App in TypeScript with Magic Links
 
-This is a 4-part combined solution to the [Master NextAuth v5: Next.js Authentication Made Easy Project](https://www.youtube.com/watch?v=4BjowsolXmw), [Next.js Authentication With Next-Auth V5 Project](https://www.youtube.com/watch?v=O8Ae6MC5bf4), [Next.js Authentication With Next-Auth V5 Credential Provider Project](https://www.youtube.com/watch?v=4m7u7zGbdTI) and [Next.js Authentication || Register User To MongoDB With Next-Auth V5 Project](https://www.youtube.com/watch?v=5kmZAqc2Jeg). I'm practicing and developing my coding competency by building projects after projects.
+This is a solution to [Auth.js v5 Complete Course: Credentials, Google & GitHub Providers, Registration & Database Project](https://www.youtube.com/watch?v=soprdrmpO3M). I'm practicing and developing my coding competency by building projects after projects.
 
 ## Table of contents
 
@@ -20,7 +20,13 @@ This is a 4-part combined solution to the [Master NextAuth v5: Next.js Authentic
 
 ### The Challenge/User Stories
 
-Learn the latest version of next-auth v5!
+Unlock the power of user authentication with Auth.js v5! This comprehensive course takes you from beginner to pro, covering everything you need to secure your application. Learn how to implement:
+- Secure Logins: Create user accounts with email and password using Credentials provider.
+- Social Logins: Simplify registration with Google and GitHub integrations.
+- User Registration: Store user data securely in a database (implementation details explained).
+- Complete Course: This video covers the entire user authentication flow, from registration to database storage.
+
+I actually attempted this project to practice my Auth skills using TypeScript and to try to implement Magic Links Email provider. I've still not quite yet been able to achieve teh second goal, but aim to refactor code towards that later.
 
 ### Screenshot
 
@@ -28,8 +34,8 @@ Learn the latest version of next-auth v5!
 
 ### Links
 
-- Solution URL: [https://github.com/traez/nextauth-v5-nextjs-authentication](https://github.com/traez/nextauth-v5-nextjs-authentication)
-- Live Site URL: [https://nextauth-v5-nextjs-authentication-trae-zeeofors-projects.vercel.app/](https://nextauth-v5-nextjs-authentication-trae-zeeofors-projects.vercel.app/)
+- Solution URL: [https://github.com/traez/authjs-v5-project-app](https://github.com/traez/authjs-v5-project-app)
+- Live Site URL: [https://authjs-v5-project-app-trae-zeeofors-projects.vercel.app/](https://authjs-v5-project-app-trae-zeeofors-projects.vercel.app/)
 
 ## My process
 
@@ -51,37 +57,14 @@ Learn the latest version of next-auth v5!
 
 ### What I learned
    
-- **Random Base64-Encoded String Generation:**  
-`node -e "console.log(require('crypto').randomBytes(32).toString('base64'))"`: This command generates a random base64-encoded string using Node.js's built-in capabilities.  
-`npx auth secret`: This command also generates a random base64-encoded string but leverages an external tool (auth).  
-Although both commands serve the same purpose, the first approach is more direct and uses Node.js's built-in functionality.
-- **auth.ts:**  
-This file configures the authentication mechanism, focusing on setting up and configuring the authentication logic using NextAuth. It defines how authentication should work, including the providers, callbacks, and other configuration details. 
-- **route.ts (Route Handler):**  
-This file sets up the API routes that handle authentication requests using the configured logic. It is responsible for exposing the authentication logic as API routes, using the handlers defined in auth.ts to create actual API endpoints that can be called from the client-side or other parts of the application. 
-- **middleware.ts:**  
-This file re-exports the auth middleware from auth.ts, enabling it to be used globally across the application to manage session lifetimes. It updates the session expiry time on every request to keep the user logged in for a longer duration. It wraps protected routes with authentication to ensure only authenticated users can access them.  
-- **Google Cloud Console and Resource Management:**  
-Google Cloud Console is your web-based control panel for managing resources in Google Cloud Platform (GCP). It lets you:  
-1) Launch and manage cloud services like compute, storage, databases, and machine learning tools.  
-2) Monitor and optimize your cloud resources for performance and cost.  
-3) Secure your cloud environment with access controls and permissions management.  
-Think of it as the mission control for your projects running on Google's cloud infrastructure.  
-- **Google Cloud Configuration for Authentication:**    
-**The Google Cloud Console** configuration is needed for setting up the **Google Provider** in your application, similar to how Developer Settings are configured in GitHub for the **GitHub Provider**.  
-In the context of **The Clerk vs. Auth.js Approach to Authentication**:
-The Clerk approach simplifies the process by handling most of the heavy lifting, allowing you to easily integrate authentication ("plug and play").  
-The Auth.js approach requires more groundwork and configuration on your part. While Clerk is "drag and drop" (as Clerk server handles code for authentication), Auth.js (NextAuth) requires extra work and configuration in your Provider settings. This provides more control and potentially higher security.  
-For setting up the Google Provider, I defined the `Client ID` and `Client Secret` in the `.env` file.
-- **Configuring Next.js Image Component for Security and Optimization:**  
-The `next/image component` in Next.js requires explicit configuration for hostnames, such as `avatars.githubusercontent.com`, in your `next.config.js` file for security and optimization purposes.  
-For my GitHub project, I used the newer `remotePatterns` property and set the pathname to `'**'` (double asterisk), which matches any path within the trusted hostname. This configuration can also omit the port and pathname for simplicity and security.  
-- **FormData in RegistrationForm.jsx:**   
-The line `const formData = new FormData(event.currentTarget);` creates a `formData` object from the form element that triggered the submit event. This captures the current state of the form's input values. The `formData` object contains key-value pairs representing the form fields and their values, ready for further processing, such as sending via the `fetch` API. 
-- **Using MongoDB Compass:**  
-MongoDB Compass allows you to easily create and manage databases and collections without writing any code. This feature is particularly useful for quick setups, prototyping, or when you want to manage your database visually. 
-- **Import Cost Extension in Visual Studio Code:**    
-The Import Cost extension helps you monitor bundle size by displaying the estimated size of imported packages right next to the import statements in your code. This allows you to quickly identify potentially large dependencies that might be bloating your application.   
+- **Shadcn UI**    
+Ran `npx shadcn-ui@latest init`to install, giving me my first taste. Shadcn UI is a user interface (UI) component library designed for building modern web applications. Shadcn UI offers a collection of customizable, pre-built components that streamline the development process, ensuring consistency and enhancing user experience. It installed itself with accompanying dependencies which provide the necessary tools for styling, class management, and potentially icons within a project using Shadcn UI components.
+- **Form Validation**  
+Server-side validation and error handling in forms using "use server": To prevent unhandled runtime errors and stay server-side, Next.js recommends using HTML validation like `required` and `type="email"` for basic client-side form validation. This won't allow the form to be submitted if elements are missing.
+- **bcryptjs**  
+For bcryptjs in TypeScript, run both `npm i bcryptjs` and `npm install --save-dev @types/bcryptjs` for type definitions for bcryptjs. The best practice for salt rounds for hashing is at least 10.
+- **Nullish Coalescing Operator (??)**  
+The nullish coalescing (??) operator is a logical operator that returns its right-hand side operand when its left-hand side operand is null or undefined, and otherwise returns its left-hand side operand. `const expires: string = session?.expires ?? "";` This code provides a default value of an empty string if `session.expires` is `null/undefined`.
 
 ### Continued development
 

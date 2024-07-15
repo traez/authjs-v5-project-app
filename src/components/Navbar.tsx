@@ -5,7 +5,7 @@ import { getSession } from "@/utils/getSession";
 
 const Navbar = async () => {
   const session = await getSession();
-  console.log(session);
+  //console.log(session);
   const user = session?.user;
 
   return (
