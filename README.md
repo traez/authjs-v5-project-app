@@ -65,6 +65,10 @@ Server-side validation and error handling in forms using "use server": To preven
 For bcryptjs in TypeScript, run both `npm i bcryptjs` and `npm install --save-dev @types/bcryptjs` for type definitions for bcryptjs. The best practice for salt rounds for hashing is at least 10.
 - **Nullish Coalescing Operator (??)**  
 The nullish coalescing (??) operator is a logical operator that returns its right-hand side operand when its left-hand side operand is null or undefined, and otherwise returns its left-hand side operand. `const expires: string = session?.expires ?? "";` This code provides a default value of an empty string if `session.expires` is `null/undefined`.
+- **Next.js Edge Runtime**  
+App only works in Development mode as "Mongoose does not currently support Next.js Edge Runtime". Npm run build repeatedly fails as a result.
+A suggestion seems to be: "Using prisma to replace the mongoose part in your auth.ts, this issue will be fixed. Go to read the documentation on the official website of Prisma, there are some examples for mongodb.".  
+See [MongoDB in NextJS: Overcoming the Edge Runtime Middleware Hurdle](https://medium.com/@chxiuy/mongodb-in-nextjs-overcoming-the-edge-runtime-middleware-hurdle-4beee31eaa30)
 
 ### Continued development
 
